@@ -1,4 +1,13 @@
-## 示例
+# 功能
+- 可选择每页显示多少条
+- 可控制显示页数范围大小
+- 可控制当前页是否可点击
+- 可填写某一页跳转
+
+# 依赖
+- bootstrap@^4.1.3
+
+# 使用
 ```html
 <!-- 示例 -->
 <h-pagination :total="total" :current="current" @jump="jump"></h-pagination>

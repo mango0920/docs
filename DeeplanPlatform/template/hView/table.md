@@ -1,15 +1,23 @@
-# 使用文档
+# 功能
+- 可设置选择框
+- 可设置排序功能
+- 可自定义类名
+
+# 依赖
+- bootstrap@^4.1.3
+
+# 使用
 ## Select Attributes
 参数|说明|类型|可选值|默认值
 --------------|-|-|-|-
 tree          |是否树形展开表格|Boolean|-|false
 data          |表格数据|Array|-|[]
-column        |表格渲染配置项，下面会详述|Array|-|[]
+column        |表格渲染配置项，<a href="#column">下面会详述</a>|Array|-|[]
 trClickToCheck|点击行是否模拟点击复选框|Boolean|-|false
 missMsg       |没有数据时的提示|String|-|没有找到匹配的记录
 refresh       |当前页是否可点击|Boolean|-|false
 
-## column
+## <a name="column">column</a>
 >重要说明：`func, key, format`需且仅需配置其中一个;如果配置了`format`, 则必需配置`name`
 
 参数|说明|类型|可选值|默认值

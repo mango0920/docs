@@ -1,6 +1,3 @@
-<p align="center"><a href="http://www.howso.cn/" target="_blank" rel="noopener noreferrer"><img width="100" src="https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268/sign=4d5817734834970a47731729adcbd1c0/1ad5ad6eddc451da6440d3b7bffd5266d016323c.jpg" alt="howso logo"></a></p>
-<h2 align="center">Deeplan Platform Template</h2>
-
 # 项目介绍
 该项目是为Deeplan平台项目[（svn地址）](https://192.168.0.73/svn/Deeplan%E5%A4%A7%E5%B9%B3%E5%8F%B0/trunk/code/front/platform)定制的Vue模板，旨在封装重复轮子、统一开发规范、力求最佳实践。
 >平台项目提供头部、导航栏、单点登录页、项目切换栏（使用iframe引入）。为保证项目开发、部署的灵活性，前端使用[postMessage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage)实现跨源通信。建议平台和项目之间仅做必要的沟通，这对平台降耦，提高通用性具有意义。
@@ -116,7 +113,7 @@ npm run build
   该文件是本模板中封装的组件库，开发人员视项目需求添加、修改，注意保持风格统一、文档完整清晰。
   - 依赖bootstrap@^4.1.3
   - 组件（具体参考组件文件内的`README.md`）
-    - h-table
+    - [h-table](./hView/table.md)
       ```html
       <!-- 示例 -->
       <h-table
@@ -124,7 +121,7 @@ npm run build
         :column="column"
       ></h-table>
       ```
-    - h-pagination
+    - [h-pagination](./hView/pagination.md)
       ```html
       <!-- 示例 -->
       <h-pagination
@@ -133,7 +130,7 @@ npm run build
         @jump="changePage" @changeSize="changeSize"
       ></h-pagination>
       ```
-    - h-echarts
+    - [h-echarts](./hView/echarts.md)
       ```html
       <!-- 示例 -->
       <h-echarts :option="option"></h-echarts>
