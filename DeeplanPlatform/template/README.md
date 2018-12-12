@@ -67,13 +67,30 @@ npm run build
 
 - constant文件
 
-  在项目中，有些值在多个文件中用到，且需要人为的保证值一致。往往修改一个地方，需要找到项目中其他地方，做重复的修改。
+  在项目中，有些值在多个文件中用到，且需要人为的保证值一致。往往修改一个地方，需要找到项目中其他地方，做重复的修改。抽取常量的好处在于通过降耦，提高开发效率和质量，且有助于整体理解掌控常量相关的业务。
+  config 系统配置|作用
+  -----------|-
+  IMPORT     |封装懒加载（从接口获取、具有约定格式的）组件路径的方法，及判断是否使用默认vue组件
+  WRAP_ROUTER|定义模板框架路由
 
-  抽取常量的好处在于通过降耦，提高开发效率和质量，且有助于整体理解掌控常量相关的业务。
+  vuex action 常量|作用
+  ---------|-
+  GET_INF  |获取用户等基本信息
+  LOGIN_OUT|调用接口退出
+
+  vuex mutation 常量|作用
+  ---------------|-
+  SET_USER_INF   |设置用户信息
+  SET_MENU       |设置动态路由
+  SET_PERMISSIONS|设置动态权限
+  SET_ROUTE      |设置实时路由
+  SET_LOAD_NUM   |设置实时loading数
 
 - [vue-router](https://router.vuejs.org/zh/)
 
   与一般Vue项目唯一不同的是**路由配置由前端写定的改为动态获取后端的**，没有需要特别关注的，有兴趣可以了解下`afterEach`中有vuex的两个mutation提交，分别控制`route`、清零`loadNum`。
+
+  常规项目通过代码配置路由，此项目通过**运维管理平台**的**菜单管理**模块设置路由，<a href="#devflow">体现在开发流程<a>。
 
 - [Vuex](https://vuex.vuejs.org/zh/guide/)
 
@@ -93,10 +110,10 @@ npm run build
   该文件是**全局样式**，回顾上面说过的**局部样式是写在`.vue`文件中的**。
 
   index.scss被引于webpack入口文件main.js，作为项目唯一引用的样式文件。其自身不写任何样式，只引入
-  - 定制bootstrap4样式库
-  - _reset.scss重置默认样式
-  - global全局样式
-  - elemHark组件库element的hark样式
+  - 定制bootstrap4（样式库）
+  - _reset.scss（重置默认样式）
+  - global（全局样式）
+  - elemHark（组件库element的hark样式）
 
   其中global文件中index.scss用于编写全局样式，及引入同目录细分的样式，如tool.scss（全局工具类）。
 
@@ -105,50 +122,13 @@ npm run build
 - 组件库
 
   组件库选用我司常用的[Element](http://element-cn.eleme.io/#/zh-CN/component/input)，可能的话，尽量不要引入其他组件库，理由：
-  - Element既称为库，是覆盖绝大多数场景所需的组件的，如果有**elem竟然没有这种常用组件**的感觉，也许是没留意，建议仔细查阅官网确认下
+  - Element既称为库，是覆盖绝大多数场景所需的组件的，如果有**elem竟然没有这种常用组件**的感觉，也许是没留意，确保已仔细查阅官方文档
   - 有助于针对一个库做样式hark的积累和沿用
 
 - framework/hView文件
 
-  该文件是本模板中封装的组件库，开发人员视项目需求添加、修改，注意保持风格统一、文档完整清晰。
-  - 依赖bootstrap@^4.1.3
-  - 组件（具体参考组件文件内的`README.md`）
-    - [h-table](./hView/table.md)
-      ```html
-      <!-- 示例 -->
-      <h-table
-        :data="getLongArr(data)"
-        :column="column"
-      ></h-table>
-      ```
-    - [h-pagination](./hView/pagination.md)
-      ```html
-      <!-- 示例 -->
-      <h-pagination
-        :total="total"
-        :current="page"
-        @jump="changePage" @changeSize="changeSize"
-      ></h-pagination>
-      ```
-    - [h-echarts](./hView/echarts.md)
-      ```html
-      <!-- 示例 -->
-      <h-echarts :option="option"></h-echarts>
-      ```
-  - 指令
-    - clickoutside
-    - resize
-  - 引入
-    ```js
-    import Vue from 'vue'
-
-    // ~代指相对路径
-    import hView from '~/hView'
-
-    // hView中组件的前缀默认为 h，可通过options配置，如配置前缀为 hso，则：
-    Vue.use(hView, { prefix: 'hso' })
-    ```
-# 开发流程
+  [点击查看详情](./hView/README.md)
+# 开发流程<a name="devflow"></a>
 
 >基本准备
 

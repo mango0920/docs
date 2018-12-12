@@ -10,7 +10,11 @@
 # 使用
 ```html
 <!-- 示例 -->
-<h-pagination :total="total" :current="current" @jump="jump"></h-pagination>
+<h-pagination
+  :total="total"
+  :current="page"
+  @jump="changePage" @changeSize="changeSize"
+></h-pagination>
 ```
 ## Select Attributes
 参数|说明|类型|可选值|默认值

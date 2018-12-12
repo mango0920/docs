@@ -7,6 +7,13 @@
 - bootstrap@^4.1.3
 
 # 使用
+```html
+  <!-- 示例 -->
+  <h-table
+    :data="getLongArr(data)"
+    :column="column"
+  ></h-table>
+  ```
 ## Select Attributes
 参数|说明|类型|可选值|默认值
 --------------|-|-|-|-
@@ -26,7 +33,7 @@ func          |功能性表格|String|index(序号)；check(复选)；其他字�
 key           |用来取值的键名|String
 format        |转化显示值的方法，Function参数为对应行的数据<必需name>|Function
 name          |列名|String
-icons         |字体图标<必需func作为列名>|Array
+icons         |字体图标<必需func作为列名>，<a href="#icons">下面会详述</a>|Array
 order         |可排序的key<必需key>|String|key的值
 class         |该列表头表体类名|String
 classHead     |该列表头类名，Function参数为对应行的数据|String/Function
@@ -35,10 +42,10 @@ fn            |点击回调,Function参数为对应行的数据<必需key或form
 textLimit     |文字超过时添加title属性<必需key或format>|Number
 
 
-## icons[]说明
+## <a name="icons">icons[]说明</a>
 参数|说明|类型|可选值|默认值
--|-|-|-|-
-iconFont|font-family|String
+---------|-|-|-|-
+iconFont |font-family|String
 iconClass|icon类名|String/Function，Function参数是对应行的数据
 
 

@@ -8,7 +8,8 @@ npm install -S echarts
 ```
 
 # 使用
-向组件传递echarts配置数据option，如：
 ```html
+<!-- 示例 -->
 <h-echarts :option="option"></h-echarts>
 ```
+向组件传递echarts配置数据option
