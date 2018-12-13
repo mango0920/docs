@@ -1,6 +1,6 @@
 # 项目介绍
-该项目是为Deeplan平台项目[（svn地址）](https://192.168.0.73/svn/Deeplan%E5%A4%A7%E5%B9%B3%E5%8F%B0/trunk/code/front/platform)定制的Vue模板，旨在封装重复轮子、统一开发规范、力求最佳实践。
->平台项目提供头部、导航栏、单点登录页、项目切换栏（使用iframe引入）。为保证项目开发、部署的灵活性，前端使用[postMessage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage)实现跨源通信。建议平台和项目之间仅做必要的沟通，这对平台降耦，提高通用性具有意义。
+该项目是为Deeplan平台项目[（svn地址）](https://192.168.0.73/svn/Deeplan%E5%A4%A7%E5%B9%B3%E5%8F%B0/trunk/code/front/platform)定制的Vue模板，旨在封装重复轮子、统一开发规范、追求最佳实践。
+>平台提供头部、导航栏、单点登录页、项目切换栏（使用iframe引入）。为保证项目开发、部署的灵活性，前端使用[postMessage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage)实现跨源通信。建议平台和项目之间仅做必要的沟通，这对平台降耦，提高通用性具有意义。
 
 # 运行打包
 ```bash
@@ -129,6 +129,75 @@ npm run build
 - framework/hView文件
 
   [点击查看详情](./hView/README.md)
+
+- 打包路径
+
+  ```js
+  // config/index.js
+  build: {
+    // Template for index.html
+    index: path.resolve(__dirname, '../dist/index.html'),
+    // Paths
+    assetsRoot: path.resolve(__dirname, '../dist')
+  }
+  ```
+- 代码检查与修复
+  - webpack
+    ```js
+    // webpack.prod.conf.js
+    compress: {
+      // 去除debugger调试
+      drop_debugger: true,
+      // 去除console打印
+      drop_console: true
+    }
+    ```
+  - ESLint
+    ```js
+    // config/index.js
+    build: {
+      dev: {
+        // If true, your code will be linted during bundling and
+        // linting errors and warnings will be shown in the console.
+        useEslint: false
+      }
+    }
+    ```
+    ```js
+    // .eslintrc.js
+    rules: {
+      'generator-star-spacing': 0,
+      'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+      'eqeqeq': 0,
+      'no-tabs': 0
+    },
+    globals: {
+      $: false,
+      jQuery: false,
+      ax: false,
+      sendMsg: false,
+      moment: false
+    }
+    ```
+- 全局变量
+
+  ```js
+  // webpack.base.conf.js
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    'window.jQuery': 'jquery',
+    ax: [resolve('src/axios/index.js'), 'default'],
+    sendMsg: [resolve('frameworks/sendMsg.js'), 'default'],
+    moment: 'moment'
+  })
+  ```
+
+  变量|解释
+  -|-
+  ax|接口请求方法
+  sendMsg|postMessage发送消息的封装方法，入参为(desc, data)，desc为描述，data为数据
+
 # <a name="devflow">开发流程</a>
 
 >基本准备
