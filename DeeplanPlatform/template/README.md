@@ -29,7 +29,7 @@ npm run ci
 * <a href="#Style">Style</a>
 * <a href="#Axios">Axios</a>
 * <a href="#constant">constant</a>
-* <a href="#router">router</a>
+* <a href="#vue-router">vue-router</a>
 * <a href="#Vuex">Vuex</a>
 * <a href="#Element">Element</a>
 * <a href="#hView">hView</a>
@@ -41,7 +41,17 @@ npm run ci
 - 扩展语言：[SCSS](https://www.sass.hk/)
 - 命名连字符：短横线（`-`）
 - 样式库：[定制bootstrap4](https://getbootstrap.com/docs/4.1/getting-started/theming/)
-- 全局样式：<a href="#stylefile">`@/style`文件</a>
+- 全局样式：`@/style`文件是全局样式。
+
+  index.scss被引于webpack入口文件main.js，作为项目唯一引用的样式文件。其自身不写任何样式，只引入
+  - 定制bootstrap4（样式库）
+  - _reset.scss（重置默认样式）
+  - global（全局样式）
+  - elemHark（组件库element的hark样式）
+
+  其中global文件中index.scss用于编写全局样式，及引入同目录细分的样式，如tool.scss（全局工具类）。
+
+  开发人员在写全局样式时、请斟酌写于index.scss中还是新建类似tool.scss的文件进行细分。
 - 局部样式：写于`.vue`的`<style>`，注意避免css覆盖
   - （推荐）使用类名`<页面>-page`包裹，如：用户管理页面`userMng.vue`中，使用`user-mng-page`包裹
   - 添加`scoped`
@@ -87,8 +97,8 @@ npm run ci
   params  |接口入参，形如`{ id: 1 }`|JSON
   apiCfg  |完全参考apis.js中记录接口信息配置的api[2]，且优先级更高。存在的意义：处理apis.js接口记录信息可能不包含的特殊情况|JSON
   axiosCfg|完全参考apis.js中记录接口信息配置的api[3]，且优先级更高。存在的意义：同上|JSON
-## <a name="constant">constant文件</a>
-在项目中，有些值在多个文件中用到，且需要人为地保证值一致。往往修改一个地方，需要找到项目中其他地方，做重复的修改。抽取常量的好处在于通过降耦，提高开发效率和质量，也有助于整体理解常量相关的业务。
+## <a name="constant">constant</a>
+在项目中，有些值在多个文件中用到，且需要人为地保证值一致。往往修改一个地方，需要找到项目中其他地方，做重复的修改。抽取常量的好处在于通过降耦，提高开发效率和质量，也有助于整体理解常量相关的业务。在@/constant文件中：
 
 config 系统配置|作用
 -----------|-
@@ -107,7 +117,7 @@ SET_MENU       |设置动态路由
 SET_PERMISSIONS|设置动态权限
 SET_ROUTE      |设置实时路由
 SET_LOAD_NUM   |设置实时loading数
-## <a name="router">[vue-router](https://router.vuejs.org/zh/)</a>
+## <a name="vue-router">[vue-router](https://router.vuejs.org/zh/)</a>
 与一般Vue项目唯一不同的是**路由配置由前端写定的改为动态获取后端的**，没有需要特别关注的，有兴趣可以了解下`afterEach`中有vuex的两个mutation提交，分别控制`route`、清零`loadNum`。
 
 常规项目通过代码配置路由，此项目通过**运维管理平台**的**菜单管理**模块配置路由，详情见<a href="#devflow">开发流程<a>。
@@ -122,18 +132,6 @@ SET_LOAD_NUM   |设置实时loading数
 - actions
   - GET_INF（获取后端的 菜单权限、功能权限）
   - LOGIN_OUT（调用退出接口）
-## <a name="stylefile">@/style文件</a>
-该文件是**全局样式**，回顾上面说过的**局部样式是写在`.vue`文件中的**。
-
-index.scss被引于webpack入口文件main.js，作为项目唯一引用的样式文件。其自身不写任何样式，只引入
-- 定制bootstrap4（样式库）
-- _reset.scss（重置默认样式）
-- global（全局样式）
-- elemHark（组件库element的hark样式）
-
-其中global文件中index.scss用于编写全局样式，及引入同目录细分的样式，如tool.scss（全局工具类）。
-
-开发人员在写全局样式时、请斟酌写于index.scss中还是新建类似tool.scss的文件进行细分。
 ## <a name="Element">Element组件库</a>
 组件库选用我司常用的[Element](http://element-cn.eleme.io/#/zh-CN/component/input)，可能的话，尽量不要引入其他组件库，理由：
 - Element既称为库，是覆盖绝大多数场景所需的组件的，如果有**elem竟然没有这种常用组件**的感觉，也许是没留意，确保已仔细查阅官方文档
