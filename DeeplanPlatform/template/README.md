@@ -41,7 +41,7 @@ npm run ci
 - 扩展语言：[SCSS](https://www.sass.hk/)
 - 命名连字符：短横线（`-`）
 - 样式库：[定制bootstrap4](https://getbootstrap.com/docs/4.1/getting-started/theming/)
-- 全局样式：`@/style`文件是全局样式。
+- 全局样式：`@/style`文件是全局样式
 
   index.scss被引于webpack入口文件main.js，作为项目唯一引用的样式文件。其自身不写任何样式，只引入
   - 定制bootstrap4（样式库）
@@ -51,7 +51,7 @@ npm run ci
 
   其中global文件中index.scss用于编写全局样式，及引入同目录细分的样式，如tool.scss（全局工具类）。
 
-  开发人员在写全局样式时、请斟酌写于index.scss中还是新建类似tool.scss的文件进行细分。
+  开发人员在写全局样式时，请斟酌写于index.scss中还是新建类似tool.scss的文件进行细分。
 - 局部样式：写于`.vue`的`<style>`，注意避免css覆盖
   - （推荐）使用类名`<页面>-page`包裹，如：用户管理页面`userMng.vue`中，使用`user-mng-page`包裹
   - 添加`scoped`
@@ -71,7 +71,8 @@ npm run ci
   api[2] |有5个可配置项，<a href="#api[2]">详情见下</a>|JSON
   api[3] |补充、覆盖index.js中axios实例，参考axios配置项|JSON
 
-  <a name="api[2]">api[2]</a>|说明|类型
+  <a name="api[2]"></a>
+  api[2]|说明|类型
   -------|-|-
   load   |请求时是否需要loading层，实际是通过控制全局状态`loadNum`间接控制loading框显隐|Boolean
   param  |接口自动获取全局状态，例：`{ userNick: state => state.userInf.nickName }`，`state`是`$store.state`的形参|JSON
