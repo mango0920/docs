@@ -72,6 +72,7 @@ npm run ci
   api[3] |补充、覆盖index.js中axios实例，参考axios配置项|JSON
 
   <a name="api[2]"></a>
+
   api[2]|说明|类型
   -------|-|-
   load   |请求时是否需要loading层，实际是通过控制全局状态`loadNum`间接控制loading框显隐|Boolean
