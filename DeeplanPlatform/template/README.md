@@ -217,8 +217,6 @@ sendMsg|postMessage发送消息的封装方法，入参为(desc, data)，desc为
 
 >基本准备
 
-拷贝模板项目（[svn](https://192.168.0.73/svn/Deeplan%E5%A4%A7%E5%B9%B3%E5%8F%B0/trunk/code/front/tpl)）作为新项目模板（注意不要保留其svn信息），上传至新项目的svn地址。
-
 进入项目根目录后，安装依赖，启动项目
 ```bash
 # install dependencies
